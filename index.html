@@ -1,153 +1,282 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Spaghettificated - App Development & Music Production beyond the Event Horizon.</title>
-    <style>
+
+<html class="dark" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Spaghettificated - App Development & Music Production beyond the Event Horizon.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=Hanken+Grotesk:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#ffba20",
+                        "surface-container": "#1f1f1f",
+                        "inverse-on-surface": "#303030",
+                        "primary": "#ffdca1",
+                        "surface-container-highest": "#353535",
+                        "surface-container-low": "#1b1b1b",
+                        "surface-tint": "#ffba20",
+                        "secondary": "#d3fbff",
+                        "on-surface-variant": "#d5c4ab",
+                        "stardust-gray": "#888888",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-secondary-fixed": "#002022",
+                        "on-tertiary-fixed-variant": "#004e5d",
+                        "background": "#131313",
+                        "error": "#ffb4ab",
+                        "surface-dim": "#131313",
+                        "on-primary-fixed-variant": "#5e4200",
+                        "on-primary-fixed": "#271900",
+                        "on-secondary": "#00363a",
+                        "primary-container": "#ffb800",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#514532",
+                        "secondary-fixed-dim": "#00dbe9",
+                        "tertiary-fixed-dim": "#17d8ff",
+                        "tertiary-container": "#00d7fe",
+                        "on-primary": "#412d00",
+                        "on-tertiary": "#003641",
+                        "secondary-fixed": "#7df4ff",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "on-background": "#e2e2e2",
+                        "inverse-primary": "#7c5800",
+                        "surface-bright": "#393939",
+                        "on-tertiary-container": "#005a6b",
+                        "surface-variant": "#353535",
+                        "primary-fixed": "#ffdea8",
+                        "on-tertiary-fixed": "#001f27",
+                        "inverse-surface": "#e2e2e2",
+                        "void-white": "#FFFFFF",
+                        "on-secondary-container": "#00686f",
+                        "outline": "#9e8f78",
+                        "deep-space": "#050510",
+                        "on-primary-container": "#6b4c00",
+                        "surface-container-high": "#2a2a2a",
+                        "surface": "#131313",
+                        "tertiary-fixed": "#b0ecff",
+                        "secondary-container": "#00eefc",
+                        "on-surface": "#e2e2e2",
+                        "tertiary": "#abebff",
+                        "on-secondary-fixed-variant": "#004f54"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "void-margin": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-xl": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-xl": ["80px", {"lineHeight": "88px", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                        "headline-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
         body {
-            background-color: #000; /* ブラックホールをイメージした黒 */
-            color: #fff; /* 文字は白 */
-            font-family: 'Courier New', Courier, monospace; /* エンジニアらしいフォント */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden; /* 文字が引き伸ばされても画面からはみ出さないように */
+            background-color: #000000;
+            color: #e2e2e2;
+            overflow-x: hidden;
         }
-
-        .container {
-            text-align: center;
+        .glass-card {
+            background: rgba(5, 5, 16, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
         }
-
-        /* Spaghettificatedロゴのアニメーション */
-        .spaghettified-title {
-            font-size: 3rem;
-            font-weight: bold;
-            display: inline-block;
-            animation: spaghettify 10s ease-in-out infinite; /* 10秒かけてループ */
-            transform-origin: center center;
+        .singularity-glow {
+            box-shadow: 0 0 120px 20px rgba(0, 238, 252, 0.15), 0 0 200px 40px rgba(255, 186, 32, 0.05);
         }
-
-        /* 文字が引き伸ばされるアニメーション */
-        @keyframes spaghettify {
-            0%, 100% {
-                transform: scaleX(1) scaleY(1);
-                letter-spacing: 0.1em;
-                opacity: 1;
-            }
-            15% {
-                transform: scaleX(0.1) scaleY(1.2); /* 縦に引き伸ばされ、横に縮む */
-                letter-spacing: -0.2em;
-                opacity: 0.8;
-            }
-            30% {
-                transform: scaleX(1.5) scaleY(0.8); /* 横に広がり、縦に縮む */
-                letter-spacing: 0.5em;
-                opacity: 0.9;
-            }
-            50% {
-                transform: scaleX(0.1) scaleY(1.5); /* さらに縦に引き伸ばされる */
-                letter-spacing: -0.1em;
-                opacity: 0.7;
-            }
-            70% {
-                transform: scaleX(1) scaleY(1); /* 元に戻る */
-                letter-spacing: 0.1em;
-                opacity: 1;
-            }
-            85% {
-                transform: scaleX(0.1) scaleY(1.2) rotate(-5deg); /* 少し回転して引き伸ばされる */
-                letter-spacing: -0.2em;
-                opacity: 0.8;
-            }
+        .grid-mesh {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(circle at center, black 30%, transparent 70%);
         }
-
-        .subtitle {
-            margin-top: 2rem;
-            font-size: 1.2rem;
-            opacity: 0.7;
-        }
-
-        .services {
-            margin-top: 3rem;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
-
-        .service-box {
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 1.5rem;
-            width: 200px;
-            transition: all 0.3s ease;
-        }
-
-        .service-box:hover {
-            border-color: rgba(255, 255, 255, 0.8);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
-        }
-
-        .service-box h3 {
-            margin-top: 0;
-            font-size: 1.5rem;
-        }
-
-        .links {
-            margin-top: 4rem;
-        }
-
-        .links a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 1rem;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-
-        .links a:hover {
-            opacity: 1;
-        }
-
-        /* 「工事中」プレースホルダー */
-        .status {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.3);
-        }
-
     </style>
 </head>
-<body>
-    <div class="status">status: Spaghettificating... (Under Construction)</div>
-
-    <div class="container">
-        <div class="spaghettified-title">The Spaghettificated</div>
-        
-        <div class="subtitle">
-            App Development & Music Production beyond the Event Horizon.
-        </div>
-
-        <div class="services">
-            <div class="service-box">
-                <h3>App</h3>
-                <p>Developing apps that transcend the user experience.</p>
-                </div>
-            <div class="service-box">
-                <h3>Music</h3>
-                <p>Producing sounds that resonate across dimensions.</p>
-                </div>
-        </div>
-
-        <div class="links">
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-            <a href="privacy-policy.html">Privacy Policy</a>
-        </div>
-    </div>
-</body>
-</html>
+<body class="font-body-md text-body-md">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[92%] rounded-full bg-deep-space/60 backdrop-blur-xl border border-outline-variant/20 shadow-xl flex justify-between items-center px-gutter py-unit z-50 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<img alt="Logo" class="h-10 w-10 object-contain" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAYAAAB/HSuDAAAQAElEQVR4AeydBWAU1/bGv7sJWjRIqVBXShXqVCiShCqvhbp7qVHX9/r+77V9dXf3lrqRBClVatSpe4trcALJ3v93F2iRJHtnd3az8k3uyczOnHvuub/Znbn3zMydCDSJgAiIgAiIgAiIgAiIgAiIgAiIgAjkOgEoAJDzu1gVFAEREAEREAEREAEREAEREAEREAEoAKAvgQiIgAiIgAiIgAiIgAiIgAiIgAjkPAFWUHcAEIKSCIiACIiACIiACIiACIiACIiACOQyAVc3BQAcBYkIiIAIiIAIiIAIiIAIiIAIiIAI5C6BWM0UAIhh0D8REAEREAEREAEREAEREAEREAERyFUCS+qlAMASDvovAiIgAiIgAiIgAiIgAiIgAiIgArlJYGmtFABYCkIzERABERABERABERABERABERABEchFAsvqpADAMhKai4AIiIAIiIAIiIAIiIAIiIAIiEDuEfirRgoA/IVCCyIgAiIgAiIgAiIgAiIgAiIgAiKQawT+ro8CAH+z0JIIiIAIiIAIiIAIiIAIiIAIiIAI5BaB5WqjAMByMLQoAiIgAiIgAiIgAiIgAiIgAiIgArlEYPm6KACwPA0ti4AIiIAIiIAIiIAIiIAIiIAIiEDuEFihJgoArIBDH0RABERABERABERABERABERABEQgVwisWA8FAFbkoU8iIAIiIAIiIAIiIAIiIAIiIAIikBsEVqqFAgArAdFHERABERABERABERABERABERABEcgFAivXQQGAlYnoswiIgAiIgAiIgAiIgAiIgAiIgAhkP4FVaqAAwCpItEIEREAEREAEREAEREAEREAEREAEsp3Aqv4rALAqE60RAREQAREQAREQAREQAREQAREQgewmUIv3CgDUAkWrREAEREAEREAEREAEREAEREAERCCbCdTmuwIAtVHROhEQAREQAREQAREQAREQAREQARHIXgK1eq4AQK1YtFIEREAEREAEREAEREAEREAEREAEspVA7X4rAFA7F60VAREQAREQAREQAREQAREQAREQgewkUIfXCgDUAUarRUAEREAEREAEREAEREAEREAERCAbCdTlswIAdZHRehEQAREQAREQAREQAREQAREQARHIPgJ1eqwAQJ1otEEEREAEREAEREAEREAEREAEREAEso1A3f4qAFA3G20RAREQAREQAREQAREQAREQAREQgewiUI+3CgDUA0ebREAEREAEREAEREAEREAEREAERCCbCNTnqwIA9dHRNhEQAREQAREQAREQAREQAREQARHIHgL1eqoAQL14tFEEREAEREAEREAEREAEREAEREAEsoVA/X4qAFA/H20VAREQAREQAREQAREQAREQAREQgewgEMdLBQDiANJmERABERABERABERABERABERABEcgGAvF8VAAgHiFtFwEREAEREAEREAEREAEREAEREIHMJxDXQwUA4iKSggiIgAiIgAiIgAiIgAiIgAiIgAhkOoH4/ikAEJ+RNERABERABERABERABERABERABEQgswl4eKcAgAckqYiACIiACIiACIiACIiACIiACIhAJhPw8U0BAB9K0hEBERABERABERABERABERABERCBzCXg5ZkCAF6YpCQCIiACIiACIiACIiACIiACIiACmUrAzy8FAPw4SUsEREAEREAEREAEREAEREAEREAEMpOAp1cKAHiCkpoIiIAIiIAIiIAIiIAIiIAIiIAIZCIBX58UAPAlJT0REAEREAEREAEREAEREAEREAERyDwC3h4pAOCNSooiIAIiIAIiIAIiIAIiIAIiIAIikGkE/P1RAMCflTRFQAREQAREQAREQAREQAREQAREILMIBPBGAYAAsKQqAiIgAiIg... [truncated]
+<span class="font-headline-lg text-headline-lg font-bold text-primary-fixed-dim tracking-tighter hidden md:block" style="font-size: 24px; line-height: 24px;">The Spaghettificated</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary-container pb-1 hover:text-secondary-fixed-dim transition-all duration-300" href="#">Studio</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary-fixed-dim transition-all duration-300 hover:scale-105" href="#">Artists</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary-fixed-dim transition-all duration-300 hover:scale-105" href="#">Technology</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary-fixed-dim transition-all duration-300 hover:scale-105" href="#">Services</a>
+</div>
+<button class="bg-primary-container text-on-primary px-6 py-2 rounded-full font-bold transition-transform active:scale-95 duration-200 hover:scale-105 shadow-[0_0_20px_rgba(0,238,252,0.1)]">
+            Launch Orbit
+        </button>
+</nav>
+<main class="relative">
+<!-- Hero Section -->
+<section class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden pt-32 px-gutter">
+<div class="absolute inset-0 grid-mesh z-0"></div>
+<div class="relative z-10 text-center max-w-5xl mx-auto mb-16">
+<h1 class="font-headline-xl text-headline-xl text-void-white mb-6 md:leading-[1.1] leading-[1.2] px-4">
+                    App Development &amp; Music Production <span class="text-primary-fixed-dim">beyond the Event Horizon.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-stardust-gray max-w-2xl mx-auto">
+                    Where creative singularity meets technical precision. We craft immersive digital ecosystems and sonic landscapes for the next dimension.
+                </p>
+</div>
+<!-- Singularity / Black Hole Visual -->
+<div class="relative z-10 w-64 h-64 md:w-96 md:h-96 rounded-full bg-black flex items-center justify-center singularity-glow">
+<div class="absolute inset-0 rounded-full border border-primary/20 animate-pulse"></div>
+<div class="absolute inset-4 rounded-full border border-secondary-container/10"></div>
+<div class="w-full h-full rounded-full bg-gradient-to-tr from-deep-space via-black to-deep-space relative overflow-hidden">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#000_70%)]"></div>
+</div>
+<!-- Mascot Floating Near Singularity -->
+<div class="absolute -right-20 md:-right-40 top-0 w-48 md:w-80 pointer-events-none">
+<img alt="Floating Mascot" class="w-full h-auto drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCV1-AX2kwpc1hr9-jKgSKp_dGohGZTqIYKL_HhnNzyX3JTJ1Jlx1SQaLlWdUoDq-ddFH4fZThmcq1wCeuXUq_9pkdliWjHitYx2WxzUHeWp5VHS0sT6DMrG-uS_g-elkOICtH96IVBjyh2uA6dzYGdODjnSHowRR2xK1KIUUO1WNLPTgOXDGoygMI42ZyTQ11vNsyoOzTQ3CUZya7FpnRCIhvCk74-8Wn87m-XuP-oY5gplevs3v2SJDRjvGIaw2u0A8pUhcWulVdp"/>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-void-margin px-gutter max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-10 gap-gutter">
+<!-- Software Development Card -->
+<div class="md:col-span-6 glass-card border border-secondary-fixed-dim/30 rounded-xl p-10 flex flex-col justify-between group hover:shadow-[0_0_30px_rgba(0,219,233,0.15)] transition-all duration-500 min-h-[450px]">
+<div>
+<div class="flex items-center gap-4 mb-8">
+<div class="w-16 h-16 rounded-lg bg-secondary-container/20 flex items-center justify-center border border-secondary-fixed-dim/40 shadow-[0_0_15px_rgba(0,238,252,0.2)]">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-4xl" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-void-white">Software Development</h2>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mb-10">
+                            Engineering complex, high-performance applications that defy traditional UX constraints. Our codebases are built to withstand the gravitational pull of scale.
+                        </p>
+<div class="flex flex-wrap gap-4">
+<span class="px-4 py-1.5 rounded-full border border-secondary-fixed-dim/20 bg-secondary-fixed-dim/5 font-label-mono text-label-mono text-secondary-fixed-dim">SYSTEM ARCHITECTURE</span>
+<span class="px-4 py-1.5 rounded-full border border-secondary-fixed-dim/20 bg-secondary-fixed-dim/5 font-label-mono text-label-mono text-secondary-fixed-dim">IMMERSIVE UI</span>
+<span class="px-4 py-1.5 rounded-full border border-secondary-fixed-dim/20 bg-secondary-fixed-dim/5 font-label-mono text-label-mono text-secondary-fixed-dim">QUANTUM LOGIC</span>
+</div>
+</div>
+<div class="mt-12">
+<button class="flex items-center gap-2 text-secondary-fixed-dim font-bold hover:gap-4 transition-all duration-300">
+                            Explore Technical Studio <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Music Production Card (Offset/Asymmetric) -->
+<div class="md:col-span-4 glass-card border border-primary-fixed-dim/30 rounded-xl p-10 flex flex-col justify-between group hover:shadow-[0_0_30px_rgba(255,186,32,0.15)] transition-all duration-500 md:translate-y-12">
+<div>
+<div class="mb-8">
+<div class="w-16 h-16 rounded-lg bg-primary-container/20 flex items-center justify-center border border-primary-fixed-dim/40 shadow-[0_0_15px_rgba(255,186,32,0.2)] mb-6">
+<span class="material-symbols-outlined text-primary-fixed-dim text-4xl" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-void-white">Music Production</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-10">
+                            Sonic sculpting for modern artists. From spatial audio mixing to modular synthesis explorations, we translate emotions into frequency.
+                        </p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 text-on-surface">
+<span class="w-2 h-2 rounded-full bg-primary-fixed-dim"></span>
+                                Spatial Sound Design
+                            </li>
+<li class="flex items-center gap-3 text-on-surface">
+<span class="w-2 h-2 rounded-full bg-primary-fixed-dim"></span>
+                                Artist Branding
+                            </li>
+<li class="flex items-center gap-3 text-on-surface">
+<span class="w-2 h-2 rounded-full bg-primary-fixed-dim"></span>
+                                Modular Mastery
+                            </li>
+</ul>
+</div>
+<div class="mt-12">
+<button class="bg-primary-fixed-dim text-on-primary-fixed font-bold px-8 py-3 rounded-full hover:scale-105 transition-transform active:scale-95">
+                            Enter the Studio
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Asymmetrical Image/Content Break -->
+<section class="py-void-margin px-gutter max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-void-margin">
+<div class="md:w-1/2">
+<div class="relative">
+<div class="absolute -inset-4 bg-gradient-to-r from-primary/20 to-tertiary/20 blur-2xl rounded-full"></div>
+<img class="relative z-10 rounded-xl border border-outline-variant/30 grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl w-full object-cover aspect-video" data-alt="A cinematic, high-detail wide shot of a futuristic music studio with glowing neon teal and vibrant gold control panels. In the background, a large circular window reveals a breathtaking view of a deep space nebula with swirling stardust. The lighting is moody and sophisticated, highlighting the metallic textures of modular synthesizers and high-end audio equipment in a minimal, professional workspace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiV9Nb5DhUgd8cX5WKMOhFbbWk337pxuhlwi8vxI1EXqSOLUtvuI0ZGb1R2rr-z2UngXhRBvenW9opozQceScRP7TWXtGVJE1f_vGV_9FImmonKnw7R7bL5jJC3aD-DdusmduS1kcPMKgclpL9RLmfNb3-QJind5B_BJCJxMA0W4GAqDsT5K9764S4o5UIOG-G888GxeneDRrhaobgsmkmYhD4RByQa1YkDdzLMNdm-rmdiqBw2G6BYlcr7If-ehauF5iuVgH6QqQL"/>
+</div>
+</div>
+<div class="md:w-1/2 space-y-6">
+<span class="font-label-mono text-label-mono text-tertiary-fixed-dim uppercase tracking-widest">THE PHILOSOPHY</span>
+<h3 class="font-headline-lg text-headline-lg text-void-white">Creative singularity is not an endpoint, but a beginning.</h3>
+<p class="font-body-lg text-body-lg text-stardust-gray">
+                    We believe the most compelling experiences happen at the intersection of conflicting forces. Code and Sound. Order and Chaos. Gravity and Light.
+                </p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-void-margin pt-void-margin pb-gutter border-t border-outline-variant/10 bg-gradient-to-t from-surface-container-lowest to-transparent">
+<div class="max-w-7xl mx-auto px-void-margin flex flex-col md:flex-row justify-between items-start gap-gutter">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-4">
+<img alt="Logo" class="h-12 w-12 object-contain" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAYAAAB/HSuDAAAQAElEQVR4AeydBWAU1/bGv7sJWjRIqVBXShXqVCiShCqvhbp7qVHX9/r+77V9dXf3lrqRBClVatSpe4trcALJ3v93F2iRJHtnd3az8k3uyczOnHvuub/Znbn3zMydCDSJgAiIgAiIgAiIgAiIgAiIgAiIgAjkOgEoAJDzu1gVFAEREAEREAEREAEREAEREAEREAEoAKAvgQiIgAiIgAiIgAiIgAiIgAiIgAjkPAFWUHcAEIKSCIiACIiACIiACIiACIiACIiACOQyAVc3BQAcBYkIiIAIiIAIiIAIiIAIiIAIiIAI5C6BWM0UAIhh0D8REAEREAEREAEREAEREAEREAERyFUCS+qlAMASDvovAiIgAiIgAiIgAiIgAiIgAiIgArlJYGmtFABYCkIzERABERABERABERABERABERABEchFAsvqpADAMhKai4AIiIAIiIAIiIAIiIAIiIAIiEDuEfirRgoA/IVCCyIgAiIgAiIgAiIgAiIgAiIgAiKQawT+ro8CAH+z0JIIiIAIiIAIiIAIiIAIiIAIiIAI5BaB5WqjAMByMLQoAiIgAiIgAiIgAiIgAiIgAiIgArlEYPm6KACwPA0ti4AIiIAIiIAIiIAIiIAIiIAIiEDuEFihJgoArIBDH0RABERABERABERABERABERABEQgVwisWA8FAFbkoU8iIAIiIAIiIAIiIAIiIAIiIAIikBsEVqqFAgArAdFHERABERABERABERABERABERABEcgFAivXQQGAlYnoswiIgAiIgAiIgAiIgAiIgAiIgAhkP4FVaqAAwCpItEIEREAEREAEREAEREAEREAEREAEsp3Aqv4rALAqE60RAREQAREQAREQAREQAREQAREQgewmUIv3CgDUAkWrREAEREAEREAEREAEREAEREAERCCbCdTmuwIAtVHROhEQAREQAREQAREQAREQAREQARHIXgK1eq4AQK1YtFIEREAEREAEREAEREAEREAEREAEspVA7X4rAFA7F60VAREQAREQAREQAREQAREQAREQgewkUIfXCgDUAUarRUAEREAEREAEREAEREAEREAERCAbCdTlswIAdZHRehEQAREQAREQAREQAREQAREQARHIPgJ1eqwAQJ1otEEEREAEREAEREAEREAEREAEREAEso1A3f4qAFA3G20RAREQAREQAREQAREQAREQAREQgewiUI+3CgDUA0ebREAEREAEREAEREAEREAEREAERCCbCNTnqwIA9dHRNhEQAREQAREQAREQAREQAREQARHIHgL1eqoAQL14tFEEREAEREAEREAEREAEREAEREAEsoVA/X4qAFA/H20VAREQAREQAREQAREQAREQAREQgewgEMdLBQDiANJmERABERABERABERABERABERABEcgGAvF8VAAgHiFtFwEREAEREAEREAEREAEREAEREIHMJxDXQwUA4iKSggiIgAiIgAiIgAiIgAiIgAiIgAhkOoH4/ikAEJ+RNERABERABERABERABERABERABEQgswl4eKcAgAckqYiACIiACIiACIiACIiACIiACIhAJhPw8U0BAB9K0hEBERABERABERABERABERABERCBzCXg5ZkCAF6YpCQCIiACIiACIiACIiACIiACIiACmUrAzy8FAPw4SUsEREAEREAEREAEREAEREAEREAEMpOAp1cKAHiCkpoIiIAIiIAIiIAIiIAIiIAIiIAIZCIBX58UAPAlJT0REAEREAEREAEREAEREAEREAERyDwC3h4pAOCNSooiIAIiIAIiIAIiIAIiIAIiIAIikGkE/P1RAMCflTRFQAREQAREQAREQAREQAREQAREILMIBPBGAYAAsKQqAiIgAiIg... [truncated]
+<h2 class="font-headline-lg text-headline-lg text-primary-fixed">The Spaghettificated</h2>
+</div>
+<p class="font-body-md text-body-md text-stardust-gray max-w-sm">
+                    © 2024 The Spaghettificated Studio. Beyond the Event Horizon.
+                </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-outline-variant/20 flex items-center justify-center hover:text-primary-fixed hover:glow-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">public</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-outline-variant/20 flex items-center justify-center hover:text-primary-fixed hover:glow-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">share</span>
+</a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-x-12 gap-y-8">
+<div class="flex flex-col gap-4">
+<span class="font-label-mono text-label-mono text-tertiary-fixed-dim uppercase">Navigation</span>
+<a class="text-stardust-gray hover:text-primary-fixed transition-colors" href="#">Studio</a>
+<a class="text-stardust-gray hover:text-primary-fixed transition-colors" href="#">Artists</a>
+<a class="text-stardust-gray hover:text-primary-fixed transition-colors" href="#">Technology</a>
+<a class="text-stardust-gray hover:text-primary-fixed transition-colors" href="#">Services</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-mono text-label-mono text-tertiary-fixed-dim uppercase">Contact</span>
+<a class="text-stardust-gray hover:text-primary-fixed transition-colors" href="mailto:contact@thespaghettificated.com">contact@thespaghettificated.com</a>
+<span class="text-stardust-gray">〒107-0062 東京都港区南青山3丁目1番36号 青山丸竹ビル6F</span>
+<a class="text-stardust-gray hover:text-primary-fixed transition-colors" href="privacy-policy.html">Privacy Protocol</a>
+<a class="text-stardust-gray hover:text-primary-fixed transition-colors" href="#">Terms of Gravity</a>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-void-margin mt-16 text-center border-t border-outline-variant/5 pt-8">
+<span class="font-label-mono text-label-mono text-outline/30 uppercase tracking-[0.5em]">Transmitting from the Void</span>
+</div>
+</footer>
+</body></html>
